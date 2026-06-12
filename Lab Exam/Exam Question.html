@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Shopping Cart</title>
+  </head>
+  <body>
+    <h2>Shopping Cart</h2>
+    <button onclick="cart.addItem()">Add to Cart</button>
+    <button onclick="cart.removeItem()">Remove from Cart</button>
+    <button onclick="cart.displayCount()">Item Count</button>
+    <p id="result">Current items in cart: 0</p>
+    <script>
+      const cart = {
+        itemCount: 0,
+        addItem: function () {
+          this.itemCount++;
+          this.updateDisplay();
+        },
+        removeItem: function () {
+          if (this.itemCount > 0) {
+            this.itemCount--;
+            this.updateDisplay();
+          }
+        },
+        displayCount: function () {
+          alert(`Current items in cart: ${this.itemCount}`);
+        },
+        updateDisplay: function () {
+          document.getElementById("result").textContent =
+            `Current items in cart: ${this.itemCount}`;
+        },
+      };
+    </script>55
+  </body>
+</html>

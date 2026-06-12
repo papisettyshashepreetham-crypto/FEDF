@@ -1,0 +1,37 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: 'Week 12/package-lock.json'
+
+    - name: Install Dependencies
+      run: |
+        cd "Week 12"
+        npm install
+
+    - name: Run Tests
+      run: |
+        cd "Week 12"
+        npm run test
+
+    - name: Build Application
+      run: |
+        cd "Week 12"
+        npm run build
